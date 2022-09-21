@@ -1,34 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pokedex
 
-## Getting Started
+https://pokedex-react-pixeleate.vercel.app/
 
-First, run the development server:
+https://user-images.githubusercontent.com/1545853/191538524-869c5ce8-7f36-424a-8dc2-468adcc83d4c.mov
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+This is a `Web App` that was built using `React (Next.js)`, `Typescript` and `Tailwindcss`, a few other libraries were used like `zod`, `cypress`, `heroicons`, `headlessui`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+When the app starts a Pokemon is rendered, specifically the first Pokemon available in the API (PokeAPI), the app detects the predominat color in the Pokemon image an uses this color as background color, in the left side we can see a paginated list which allows the user to move to the user to different pages 10 results by 10 results, if the users clicks on a Pokemon name the Pokemon will show up on the screen, the background will be adjusted algon with the stats, there is an `Add Pokemon feature` which allows the user to add a new Pokemon to the existing list.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Concepts covered
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- Component Composition
+- Presentational Components
+- Types ( using zod and Typescript)
+- Styling
+- Custom hooks (usePokemon, usePaginatedFetch)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## How to run the app
 
-## Learn More
+- `yarn install`
 
-To learn more about Next.js, take a look at the following resources:
+- `yarn dev`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+When adding a Pokemon only 3 domains for images are allow `raw.githubusercontent.com`, `images.unsplash.com`, `scarletviolet.pokemon.com`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## How to run the tests
 
-## Deploy on Vercel
+There is only one tests mostly implemented to show how to setup tests using Cypress, the test will verify that the first Pokemon is rendering and will also verify that when another Pokemon is selectec from the paginated list the new Pokemon is showing up.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `yarn e2e:headless`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Add Pokemon feature
+
+This is a feature that is not available via the PokeAPI so all the logic is implemented in the frontend and the changes will be removed if the page is hard refreshed.
+
+### How it works
+
+There is a Plus button that opens a Modal window with a form where you can add details about your new Pokemon, once the form is submited the new Pokemon is stored in the Local stated and passed to the Navigation that way the new Pokemon is accessible, the new Pokemons are marked with a start in the Navigation, once the Pokemon is selected the new Pokemon data is passed to the Details componet and the Pokemon is visible on the screen, no network request are made during this process.
+
+## TODO
+
+- [ ] More testing, including unit testing
+- [ ] Accessibility, the app has a score of 86% it could be close to 100%
+- [ ] The app is not responsive
+- [ ] Using a State Management library could help to centralize the state of the app
